@@ -1,5 +1,12 @@
 # Agent notes for ksamintskill01
 
+<!-- ksamint-policy-pointer v1 -->
+> **Global agent policy:** this repository follows ksamint ADR-0000 (claudememo01 `global/AGENT-POLICY.md`):
+> TypeScript first, Rust first (no new JS) · no CI runners (no GitHub Actions, hosted or self-hosted) · validate locally on the
+> exact tree · the agent merges on green local validation · deploy directly from the local deploy machine with automatic
+> rollback · hard limits on shared infrastructure, secrets and product rules. Stricter safety rules below still apply.
+<!-- /ksamint-policy-pointer -->
+
 ## Source of truth
 
 - Authored skills live under `skills/<name>/` with a `SKILL.md`.
@@ -39,9 +46,9 @@ python3 scripts/build-catalog.py
 
 ## Skill import releases
 
-This public repository deploys only through GitHub-hosted Actions on `main`, after its checks pass. Production credentials belong to the main-only `production` Environment. PR jobs run validation without production secrets. Follow the deployment run through completion and verify the live SHA, catalog, projects, runs, registry, and jobs before reporting success. Direct local/TAT application deployment requires an explicit user override. Initial installation of the restricted deployment receiver is infrastructure setup, not an alternate release route.
+This public repository deploys directly from the local deploy machine, with no GitHub Actions or runners (hosted or self-hosted): re-run the checks there on the exact `main` SHA, deploy, verify, roll back automatically on failure, and write a deploy report. Production credentials belong to the main-only `production` Environment. PR validation runs locally on the exact commit in a clean checkout, without production secrets. Follow the deployment run through completion and verify the live SHA, catalog, projects, runs, registry, and jobs before reporting success. Initial installation of the restricted deployment receiver is infrastructure setup, not an alternate release route.
 
-When the user supplies a skill package for this repository and asks to add or install it, validate it, rebuild the catalog, update local links, commit to `main`, push, and deploy the exact remote `main` SHA to the existing Skill Hub production target. Stop before publication if the worktree has unrelated changes, validation fails, the remote diverges, or the established deployment target, rollback path, or smoke checks are unavailable.
+When the user supplies a skill package for this repository and asks to add or install it, validate it, rebuild the catalog, update local links, commit on a branch, open a PR, merge it when local validation of the PR head rebased on `main` is green, and deploy the exact remote `main` SHA to the existing Skill Hub production target. Stop before publication if the worktree has unrelated changes, validation fails, the remote diverges, or the established deployment target, rollback path, or smoke checks are unavailable.
 
 ## Skill Hub GUI
 
