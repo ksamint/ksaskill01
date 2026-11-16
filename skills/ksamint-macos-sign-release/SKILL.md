@@ -1,6 +1,6 @@
 ---
 name: ksamint-macos-sign-release
-description: Build, Developer ID sign, notarize, verify, and safely install ksamint MarkEdit for macOS. Use when working on its signed ARM64 local build, Universal release, Apple notarization failures or stalls, GitHub release-environment workflow, local App replacement, Homebrew readiness, signing certificates, provisioning profiles, bundled Helper/Finder/Quick Action extensions, or when checking whether the installed Mac app matches an exact commit.
+description: Build, Developer ID sign, notarize, verify, and safely install ksamint MarkEdit for macOS. Use when working on its signed ARM64 local build, Universal release, Apple notarization failures or stalls, authorized Mac build host, local App replacement, Homebrew readiness, signing certificates, provisioning profiles, bundled Helper/Finder/Quick Action extensions, or when checking whether the installed Mac app matches an exact commit.
 ---
 
 # ksamint macOS signed release
@@ -24,7 +24,7 @@ Ship an exact repository commit without weakening Gatekeeper, exposing credentia
 
 - Keep the Developer ID `.p12`, its password, App Store Connect `.p8`, Issuer ID, and Team ID in 1Password or GitHub release-environment secrets.
 - Never print, paste, commit, upload as a normal artifact, or include secret values in a report. Redact command output and unset temporary secret variables.
-- It is safe to report certificate names, Key IDs, Team IDs, profile names, submission IDs, workflow run IDs, versions, and commit SHAs.
+- It is safe to report certificate names, Key IDs, Team IDs, profile names, submission IDs, versions, and commit SHAs.
 - Do not disable hardened runtime, Gatekeeper, sandboxing, timestamping, or approval gates to make a build pass.
 - Do not merge, publish Homebrew, or create a formal release merely because a local ARM64 build succeeds.
 
