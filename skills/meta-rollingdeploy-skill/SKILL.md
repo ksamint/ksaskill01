@@ -11,7 +11,7 @@ Keep the repository's existing release module. Add only the smallest routing and
 
 1. Establish the real topology: immutable artifact path, proxy/provider, active and candidate instances, stateful dependencies, write owners, health/governance probes, rollback command, and release lock.
 2. Classify every persistence system as single-writer or multi-writer. A single-writer service may receive candidate reads, but every write and side effect stays on the active writer until the commit point.
-3. Use `github-fast-deploy` to select the existing GitHub Actions or local/provider route. Pin the remote default branch's exact SHA, reuse exact-tree evidence, and never race two deploy routes.
+3. Use `direct-deploy` to build and test a target-compatible binary artifact and push it directly to the server over SSH. Pin the remote default branch's exact SHA, reuse exact-tree evidence, and never race two deploy routes.
 4. Check artifact-registry capacity and retention before building. Protect images referenced by active, candidate, and rollback receipts; prune only exact unreferenced tags whose source can be rebuilt, or use a reviewed lifecycle policy.
 5. Require explicit authorization for the target environment. Authorization for one SHA and environment does not authorize another.
 

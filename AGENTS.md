@@ -37,11 +37,26 @@ After adding or renaming a skill:
 python3 scripts/build-catalog.py
 ```
 
-## Skill import releases
+## Local validation and direct deployment
 
-This public repository deploys only through GitHub-hosted Actions on `main`, after its checks pass. Production credentials belong to the main-only `production` Environment. PR jobs run validation without production secrets. Follow the deployment run through completion and verify the live SHA, catalog, projects, runs, registry, and jobs before reporting success. Direct local/TAT application deployment requires an explicit user override. Initial installation of the restricted deployment receiver is infrastructure setup, not an alternate release route.
+Run the release checks from a clean checkout of the exact source tree. Include
+the tested tree SHA and results in the PR.
 
-When the user supplies a skill package for this repository and asks to add or install it, validate it, rebuild the catalog, update local links, commit to `main`, push, and deploy the exact remote `main` SHA to the existing Skill Hub production target. Stop before publication if the worktree has unrelated changes, validation fails, the remote diverges, or the established deployment target, rollback path, or smoke checks are unavailable.
+```bash
+node --test gui/lib/*.test.js
+python3 scripts/lint-skills.py
+bash scripts/scan-secrets.sh skills/
+bash -n scripts/package-release.sh
+bash -n scripts/receive-release.sh
+```
+
+Use `direct-deploy` for an authorized Skill Hub application release. Build the
+completed package on the local or authorized build host. The historical
+`scripts/receive-release.sh` expects a GitHub artifact URL. Application
+publishing requires a tested direct receiver that verifies the package
+checksum and exact revision before activation and preserves release locking,
+health checks and rollback. Source PRs and local skill installs are separate
+from application publishing.
 
 ## Skill Hub GUI
 

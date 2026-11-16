@@ -32,7 +32,7 @@ gf4p2slides	cursor,claude,codex
 repo-architecture-audit	cursor,claude,codex
 fileye	cursor,claude,codex
 orchestrate-development	cursor,claude,codex
-self-hosted-github-runner	codex
+direct-deploy	cursor,claude,codex
 1auto-cli01	codex
 op-cli-preflight	codex
 codex-with-chatgpt	codex

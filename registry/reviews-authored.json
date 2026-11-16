@@ -260,25 +260,22 @@
     "name": "ksamint-githubaction-skill",
     "shortName": "ci",
     "command": "ci",
-    "purpose": "Measure and reduce GitHub Actions latency, waste and failure while preserving release checks.",
+    "purpose": "Retire GitHub Actions by replacing checks locally and moving releases to direct deployment.",
     "recommendation": "keep",
-    "quality": "Evidence-based scope selection, required-check preservation and separate duration versus billing measures; explicitly limits external mutations and avoids repeated testing without changed inputs.",
+    "quality": "Identifies trigger and required-check dependencies before retirement and verifies the locally validated direct path.",
     "evidence": [
-      "skills/ksamint-githubaction-skill/SKILL.md: Match evidence to scope distinguishes focused optimization from full execution audits.",
-      "skills/ksamint-githubaction-skill/SKILL.md: Preserve release discipline and Verify one path, once define authorization and validation boundaries."
+      "skills/ksamint-githubaction-skill/SKILL.md"
     ],
-    "overlaps": [
-      "self-hosted-github-runner"
-    ],
-    "reviewedAt": "2026-09-18",
-    "reviewedHash": "36d16fc579a9794f5ef267a8ba98af9a88b113b7a83a1dbdf9e29d7805c65449",
+    "overlaps": [],
+    "reviewedAt": "2026-11-16",
+    "reviewedHash": "74e865c659a52daa0c466a6f72890ac7cc7e49ee9634510be17ce1cb2aed4584",
     "commandId": "k015"
   },
   {
     "name": "ksamint-macos-sign-release",
     "shortName": "sign",
     "command": "sign",
-    "purpose": "Build, sign, notarize, verify and safely replace the exact-commit ksamint MarkEdit macOS app.",
+    "purpose": "Build, sign, notarize, and install the verified local or authorized Mac release artifact.",
     "recommendation": "keep",
     "quality": "Specific architecture, signing, backup and rollback gates with direct installed-app verification; intentionally product-specific and requires its external repository and signing environment.",
     "evidence": [
@@ -286,8 +283,8 @@
       "skills/ksamint-macos-sign-release/SKILL.md: Completion gates cover commit, architectures, signatures, stapling, extensions and rollback."
     ],
     "overlaps": [],
-    "reviewedAt": "2026-09-18",
-    "reviewedHash": "9bfc68d90beafd0d7129a407c6cece8f217aeada2849fdb8e276388b0351dc51",
+    "reviewedAt": "2026-11-16",
+    "reviewedHash": "d26630762401dc03b6a918a1c906b217e2ac41361021e9e4bd0d160424a996ee",
     "commandId": "k016"
   },
   {
@@ -488,23 +485,19 @@
     "commandId": "k027"
   },
   {
-    "name": "self-hosted-github-runner",
+    "name": "direct-deploy",
     "shortName": "ship",
     "command": "ship",
-    "purpose": "Recover and verify repeatable GitHub Actions releases to mainland China while preserving the authorized runner and transport.",
+    "purpose": "Validate, package, transfer, and activate authorized releases directly.",
     "recommendation": "improve",
-    "quality": "The entrypoint now separates recovery from optional pull architecture and requires exact source identity, CI gating, shared-host isolation and next-run verification. Advanced architecture still needs permission-table cleanup and verification of broad runner/network claims; scenario cases are not production certification.",
+    "quality": "The procedure binds local checks and the received artifact to the exact source tree and keeps health, rollback, and single-writer protections.",
     "evidence": [
-      "SKILL.md: Choose the smallest working route, Source checks and release identity, and Verify and report cover the supplied recovery guide.",
-      "references/advanced-architecture.md: Sections 2 and 5 still describe the apply account as read-only although templates/cam-policy-inbox-reader.json permits outbox writes.",
-      "references/ksamint-runners-cache.md: dated API readback records the ksamint all-repository pool while separating scheduling access, job privileges, isolation and CPU performance.",
-      "evals/evals.json: scenarios 1-15 cover release recovery, identity, cleanup, shared hosts, authorized hosted routes, organization pools, isolated persistent caches and toolchain/performance gates."
+      "skills/direct-deploy/SKILL.md",
+      "skills/direct-deploy/references/vanahom-fb-hom01.md"
     ],
-    "overlaps": [
-      "ksamint-githubaction-skill"
-    ],
-    "reviewedAt": "2026-09-20",
-    "reviewedHash": "0df8c60fd13b6b572d5f65d5e79fb5848451b0a9714c398ae5cc95605f4089d7",
+    "overlaps": [],
+    "reviewedAt": "2026-11-16",
+    "reviewedHash": "ca627ac5299153c76ccffc3cb05ff26d7778d07c48031ae4c9847e2a96043955",
     "commandId": "k028"
   },
   {
@@ -660,15 +653,15 @@
     "name": "meta-rollingdeploy-skill",
     "shortName": "roll",
     "command": "roll",
-    "purpose": "Plan and verify progressive production releases.",
+    "purpose": "Roll out an authorized direct artifact release through the existing progressive health and rollback gates.",
     "recommendation": "keep",
     "quality": "Bounded import review: frontmatter and plaintext-credential checks passed. Runtime verification is limited to the checks recorded for this import; this is not a full workflow audit.",
     "evidence": [
       "skills/meta-rollingdeploy-skill/SKILL.md: imported from the existing local Codex skill; credential values stay outside the repository."
     ],
     "overlaps": [],
-    "reviewedAt": "2026-10-14",
-    "reviewedHash": "7a3fe41c6a2311e0609804dd274f02e73a7d4096f611841d3412c41c81567d80",
+    "reviewedAt": "2026-11-16",
+    "reviewedHash": "eb1a9e51fa5625a4d3cab29f1503f2aa16cbb0ccddf63873d000972ec3121281",
     "commandId": "k038"
   },
   {
